@@ -6,6 +6,8 @@ const DiscountCode = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [error, setError] = useState('');
 
+  // Check if the code is valid.
+  // Used the sample regexp to test right now. Can update this in real logic.
   const validate = (code: string) => {
     return /^2024$/.test(code);
   }
@@ -13,10 +15,10 @@ const DiscountCode = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
 
-    if (validate(event.target.value)) {
+    if (validate(event.target.value) || !event.target.value.length ) {
         setError('');
     }else{
-        setError('The code you entered is invalid');
+      setError('The code you entered is invalid');
     }
 
 };
